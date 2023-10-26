@@ -16,12 +16,12 @@ import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.orm.hibernate5.HibernateExceptionTranslator;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-import org.springframework.orm.jpa.vendor.HibernateJpaDialect;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
+import java.util.Objects;
 import java.util.Properties;
 
 @Configuration
@@ -57,16 +57,20 @@ public class AppConfig
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory()
 	{
 		LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
+		factory.setPackagesToScan(env.getProperty("packages-to-scan"));
+		factory.setLoadTimeWeaver(new InstrumentationLoadTimeWeaver());
+
+		factory.setDataSource(dataSource());
+
 		HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
 		vendorAdapter.setShowSql(Boolean.parseBoolean(env.getProperty("hibernate.show_sql", "true")));
-		factory.setDataSource(dataSource());
 		factory.setJpaVendorAdapter(vendorAdapter);
-		factory.setPackagesToScan(env.getProperty("packages-to-scan"));
+
 		Properties jpaProperties = new Properties();
 		jpaProperties.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
 		factory.setJpaProperties(jpaProperties);
 		factory.afterPropertiesSet();
-		factory.setLoadTimeWeaver(new InstrumentationLoadTimeWeaver());
+
 		return factory;
 	}
 
@@ -91,12 +95,14 @@ public class AppConfig
 	public DataSourceInitializer dataSourceInitializer(DataSource dataSource)
 	{
 		DataSourceInitializer dataSourceInitializer = new DataSourceInitializer();
+		dataSourceInitializer.setEnabled(Boolean.parseBoolean(env.getProperty("init-db", "false")));
+
 		dataSourceInitializer.setDataSource(dataSource);
 
 		ResourceDatabasePopulator databasePopulator = new ResourceDatabasePopulator();
-		databasePopulator.addScript(new ClassPathResource(env.getProperty("init-scripts")));
+		databasePopulator.addScript(new ClassPathResource(Objects.requireNonNull(env.getProperty("init-scripts"))));
 		dataSourceInitializer.setDatabasePopulator(databasePopulator);
-		dataSourceInitializer.setEnabled(Boolean.parseBoolean(env.getProperty("init-db", "false")));
+
 		return dataSourceInitializer;
 	}
 }
