@@ -8,6 +8,6 @@ CREATE TABLE users (
 );
 
 delete from users;
-insert into users(id, name, email) OVERRIDING SYSTEM VALUE values(1,'Siva','siva@gmail.com');
-insert into users(id, name, email) OVERRIDING SYSTEM VALUE values(2,'Prasad','prasad@gmail.com');
-insert into users(id, name, email) OVERRIDING SYSTEM VALUE values(3,'Reddy','reddy@gmail.com');
+insert into users(id, name, email) OVERRIDING SYSTEM VALUE values(1,'Altin','altin@gmail.com');
+insert into users(id, name, email) OVERRIDING SYSTEM VALUE values(2,'Klenti','klenti@gmail.com');
+insert into users(id, name, email) OVERRIDING SYSTEM VALUE values(3,'Roula','roula@gmail.com');

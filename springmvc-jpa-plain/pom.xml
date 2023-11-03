@@ -13,7 +13,7 @@
     <packaging>war</packaging>
 
     <name>SpringMVC JPA Demo</name>
-    <description>A demo project the uses core Spring (no spring boot starters), SpringMVC and JPA</description>
+    <description>A demo project that uses core Spring (no spring boot starters), SpringMVC and JPA</description>
 
     <properties>
         <failOnMissingWebXml>false</failOnMissingWebXml>
