@@ -4,13 +4,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.cipitech.samples</groupId>
+    <groupId>com.cipitech.samples.spring</groupId>
     <artifactId>spring-boot-samples</artifactId>
     <version>1.0.0</version>
     <packaging>pom</packaging>
 
     <name>Spring Boot Examples</name>
-    <description>Portfolio Project</description>
+    <description>Portfolio Project on Spring and Spring Boot</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -46,6 +46,7 @@
 
     <modules>
         <module>springmvc-jpa-plain</module>
+        <module>springmvc-jpa-boot</module>
     </modules>
 
     <dependencies>

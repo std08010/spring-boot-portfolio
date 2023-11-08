@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.cipitech.samples</groupId>
+        <groupId>com.cipitech.samples.spring</groupId>
         <artifactId>spring-boot-samples</artifactId>
         <version>1.0.0</version>
     </parent>
@@ -12,7 +12,7 @@
     <artifactId>springmvc-jpa-plain</artifactId>
     <packaging>war</packaging>
 
-    <name>SpringMVC JPA Demo</name>
+    <name>SpringMVC JPA Demo (Plain)</name>
     <description>A demo project that uses core Spring (no spring boot starters), SpringMVC and JPA</description>
 
     <properties>
