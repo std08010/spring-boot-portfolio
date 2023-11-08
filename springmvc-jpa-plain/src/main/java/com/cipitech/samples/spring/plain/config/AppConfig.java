@@ -10,7 +10,6 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver;
 import org.springframework.jdbc.datasource.init.DataSourceInitializer;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.orm.hibernate5.HibernateExceptionTranslator;
@@ -58,7 +57,7 @@ public class AppConfig
 	{
 		LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
 		factory.setPackagesToScan(env.getProperty("packages-to-scan"));
-		factory.setLoadTimeWeaver(new InstrumentationLoadTimeWeaver());
+//		factory.setLoadTimeWeaver(new InstrumentationLoadTimeWeaver());
 
 		factory.setDataSource(dataSource());
 
@@ -68,6 +67,7 @@ public class AppConfig
 
 		Properties jpaProperties = new Properties();
 		jpaProperties.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
+		jpaProperties.put("hibernate.dialect", env.getProperty("hibernate.dialect"));
 		factory.setJpaProperties(jpaProperties);
 		factory.afterPropertiesSet();
 
@@ -104,5 +104,10 @@ public class AppConfig
 		dataSourceInitializer.setDatabasePopulator(databasePopulator);
 
 		return dataSourceInitializer;
+	}
+
+	public static void main(String[] args)
+	{
+
 	}
 }
