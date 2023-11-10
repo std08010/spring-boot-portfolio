@@ -14,6 +14,7 @@ import org.thymeleaf.spring6.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring6.view.ThymeleafViewResolver;
 
 @Configuration
+//Instruct Spring in which package to search for Spring Beans
 @ComponentScan(basePackages = {"com.cipitech.samples.spring.plain.web"})
 @EnableWebMvc
 public class WebMvcConfig implements WebMvcConfigurer
