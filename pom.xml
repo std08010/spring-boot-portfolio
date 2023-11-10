@@ -47,6 +47,7 @@
     <modules>
         <module>springmvc-jpa-plain</module>
         <module>springmvc-jpa-boot</module>
+        <module>springmvc-initializr</module>
     </modules>
 
     <dependencies>
