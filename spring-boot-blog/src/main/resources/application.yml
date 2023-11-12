@@ -1,0 +1,25 @@
+logging:
+  level:
+    org:
+      springframework: ERROR
+      hibernate: ERROR
+    com:
+      cipitech: TRACE
+
+server:
+  port: 8080
+  servlet:
+    context-path: /blog
+
+spring:
+  messages:
+    encoding: UTF-8
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 100MB
+      file-size-threshold: 0B
+
+
+uploadLocation: "C://logs//uploads"
