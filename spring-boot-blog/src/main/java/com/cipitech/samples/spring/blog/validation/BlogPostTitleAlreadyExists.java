@@ -14,6 +14,7 @@ import java.lang.annotation.Target;
 public @interface BlogPostTitleAlreadyExists
 {
 	String message() default "Title Already Exists";
+//	String message() default "{MyCustomLabel}";
 
 	Class<?>[] groups() default {};
 

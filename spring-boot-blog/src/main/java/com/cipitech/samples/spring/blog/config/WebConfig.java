@@ -1,9 +1,12 @@
 package com.cipitech.samples.spring.blog.config;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.validation.Validator;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
@@ -21,6 +24,7 @@ import java.util.Properties;
  * autoconfiguration will be disabled.
  */
 
+@Slf4j
 @Configuration
 @RequiredArgsConstructor
 public class WebConfig implements WebMvcConfigurer
@@ -30,7 +34,7 @@ public class WebConfig implements WebMvcConfigurer
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry)
 	{
-		registry.addRedirectViewController("/", "/posts");
+		registry.addRedirectViewController("/", "/posts"); // redirect "/" to "/posts"
 	}
 
 	@Override
@@ -46,9 +50,9 @@ public class WebConfig implements WebMvcConfigurer
 	}
 
 	@Override
-	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer)
+	public void configureDefaultServletHandling( DefaultServletHandlerConfigurer configurer)
 	{
-		// Do Nothing
+		// Left empty intentionally so that default configuration for DispatcherServlet is used.
 	}
 
 	@Override
@@ -59,8 +63,10 @@ public class WebConfig implements WebMvcConfigurer
 
 	//Instead of using this you can create a GlobalExceptionHandler annotated with the @ControllerAdvice
 	@Bean(name = "simpleMappingExceptionResolver")
+	@Profile("bean-exception")
 	public SimpleMappingExceptionResolver simpleMappingExceptionResolver()
 	{
+		log.debug("Using exception handler configuration via SimpleMappingExceptionResolver bean in WebConfig");
 		SimpleMappingExceptionResolver exceptionResolver = new SimpleMappingExceptionResolver();
 		Properties mappings = new Properties();
 		//add a view for each type of exception

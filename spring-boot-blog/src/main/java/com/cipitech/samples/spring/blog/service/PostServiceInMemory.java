@@ -1,7 +1,6 @@
 package com.cipitech.samples.spring.blog.service;
 
 import com.cipitech.samples.spring.blog.domain.Post;
-import com.cipitech.samples.spring.blog.exception.SpringBlogException;
 import com.cipitech.samples.spring.blog.repository.PostRepositoryInMemory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -31,11 +30,21 @@ public class PostServiceInMemory
 
 	public boolean postExistsWithTitle(String title)
 	{
-		return postRepository.findAllPosts().stream().anyMatch(post -> post.getTitle().equals(title));
+		return postRepository.findAllPosts().stream().anyMatch(post -> title.equals(post.getTitle()));
 	}
 
 	public Post findPost(Integer postId)
 	{
 		return postRepository.findPost(postId);
+	}
+
+	public void updatePost(Post post)
+	{
+		postRepository.updatePost(post);
+	}
+
+	public void deletePost(Integer id)
+	{
+		postRepository.deletePost(id);
 	}
 }

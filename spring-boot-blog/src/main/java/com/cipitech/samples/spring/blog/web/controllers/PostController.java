@@ -1,7 +1,6 @@
 package com.cipitech.samples.spring.blog.web.controllers;
 
 import com.cipitech.samples.spring.blog.domain.Post;
-import com.cipitech.samples.spring.blog.exception.SpringBlogException;
 import com.cipitech.samples.spring.blog.service.PostServiceInMemory;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -10,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 @Slf4j
 @Controller
@@ -69,6 +67,13 @@ public class PostController
 	{
 		model.addAttribute("post", postService.findPost(id));
 		return "onePost";
+	}
+
+	@GetMapping("/update/{id}")
+	public String updatePost(Model model, @PathVariable Integer id)
+	{
+		model.addAttribute("post", postService.findPost(id));
+		return "updatePost";
 	}
 
 	//This will only handle exceptions thrown from inside the controller, not globally

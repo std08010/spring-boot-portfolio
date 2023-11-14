@@ -29,6 +29,20 @@ public class PostRepositoryInMemory
 
 	public Post findPost(Integer postId)
 	{
-		return posts.stream().filter(post -> post.getId().equals(postId)).findFirst().orElseThrow(() -> new SpringBlogException("Cannot find post by id: " + postId));
+		return posts.stream().filter(post -> postId.equals(post.getId())).findFirst()
+				.orElseThrow(() -> new SpringBlogException("Cannot find post by id: " + postId));
+	}
+
+	public void updatePost(Post post)
+	{
+		Post savedPost = findPost(post.getId());
+		post.setId(savedPost.getId());
+		posts.add(post);
+	}
+
+	public void deletePost(Integer id)
+	{
+		Post onePost = findPost(id);
+		posts.remove(onePost);
 	}
 }

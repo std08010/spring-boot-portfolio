@@ -21,7 +21,10 @@ public record BlogPostTitleValidator(
 		if (!StringUtils.isEmpty(post.getTitle()) && postService.postExistsWithTitle(post.getTitle()))
 		{
 			constraintValidatorContext.disableDefaultConstraintViolation();
-			constraintValidatorContext.buildConstraintViolationWithTemplate(constraintValidatorContext.getDefaultConstraintMessageTemplate()).addPropertyNode("title").addConstraintViolation();
+			constraintValidatorContext
+					.buildConstraintViolationWithTemplate(constraintValidatorContext.getDefaultConstraintMessageTemplate()) // BlogPostTitleAlreadyExists.message
+//					.buildConstraintViolationWithTemplate("{MyCustomLabel}")
+					.addPropertyNode("title").addConstraintViolation();
 			return false;
 		}
 		return true;
