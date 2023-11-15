@@ -6,7 +6,7 @@
 </head>
 
 <body>
-<div th:object="post">
+<div th:object="${post}">
     <h1 th:text="${post.title}"></h1>
     <h3 th:text="${post.description}"></h3>
     <div th:text="${post.body}"></div>

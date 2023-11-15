@@ -1,13 +1,13 @@
 package com.cipitech.samples.spring.blog.validation;
 
 import com.cipitech.samples.spring.blog.domain.Post;
-import com.cipitech.samples.spring.blog.service.PostServiceInMemory;
+import com.cipitech.samples.spring.blog.service.PostService;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import org.apache.commons.lang3.StringUtils;
 
 public record BlogPostTitleValidator(
-		PostServiceInMemory postService) implements ConstraintValidator<BlogPostTitleAlreadyExists, Post>
+		PostService postService) implements ConstraintValidator<BlogPostTitleAlreadyExists, Post>
 {
 	@Override
 	public void initialize(BlogPostTitleAlreadyExists constraintAnnotation)

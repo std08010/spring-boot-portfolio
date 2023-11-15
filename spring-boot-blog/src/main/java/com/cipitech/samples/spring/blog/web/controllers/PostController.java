@@ -1,7 +1,7 @@
 package com.cipitech.samples.spring.blog.web.controllers;
 
 import com.cipitech.samples.spring.blog.domain.Post;
-import com.cipitech.samples.spring.blog.service.PostServiceInMemory;
+import com.cipitech.samples.spring.blog.service.PostService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class PostController
 {
-	private final PostServiceInMemory postService;
+	private final PostService postService;
 
 	@GetMapping
 	public String postPage(Model model)
@@ -65,14 +65,14 @@ public class PostController
 	@GetMapping("/{id}")
 	public String onePostPage(Model model, @PathVariable Integer id)
 	{
-		model.addAttribute("post", postService.findPost(id));
+		model.addAttribute("post", postService.findById(id));
 		return "onePost";
 	}
 
 	@GetMapping("/update/{id}")
 	public String updatePost(Model model, @PathVariable Integer id)
 	{
-		model.addAttribute("post", postService.findPost(id));
+		model.addAttribute("post", postService.findById(id));
 		return "updatePost";
 	}
 

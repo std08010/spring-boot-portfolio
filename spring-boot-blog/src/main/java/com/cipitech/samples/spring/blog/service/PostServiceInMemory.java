@@ -1,41 +1,23 @@
 package com.cipitech.samples.spring.blog.service;
 
 import com.cipitech.samples.spring.blog.domain.Post;
+import com.cipitech.samples.spring.blog.repository.PostRepository;
 import com.cipitech.samples.spring.blog.repository.PostRepositoryInMemory;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
-import java.util.Set;
-
+@Profile("in-memory")
 @Service
 @RequiredArgsConstructor
-public class PostServiceInMemory
+public class PostServiceInMemory extends PostService
 {
 	private final PostRepositoryInMemory postRepository;
 
-	public void addPost(Post post)
+	@Override
+	public PostRepository getRepository()
 	{
-		postRepository.addPost(post);
-	}
-
-	public Set<Post> findAllPosts()
-	{
-		return postRepository.findAllPosts();
-	}
-
-	public boolean isEmpty()
-	{
-		return postRepository.isEmpty();
-	}
-
-	public boolean postExistsWithTitle(String title)
-	{
-		return postRepository.findAllPosts().stream().anyMatch(post -> title.equals(post.getTitle()));
-	}
-
-	public Post findPost(Integer postId)
-	{
-		return postRepository.findPost(postId);
+		return postRepository;
 	}
 
 	public void updatePost(Post post)

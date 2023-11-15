@@ -13,7 +13,7 @@ server:
 
 spring:
   profiles:
-    active: global-exception
+    active: global-exception, jdbc-plain
   messages:
     encoding: UTF-8
   servlet:

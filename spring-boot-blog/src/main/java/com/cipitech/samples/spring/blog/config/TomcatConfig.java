@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Profile;
 
 @Profile("manual-tomcat-config")
 @Configuration
-public class TomcatConfiguration
+public class TomcatConfig
 {
 	@Value("${server.port}")
 	private int serverPort; //this should have a https value like 8443

@@ -1,6 +1,7 @@
 package com.cipitech.samples.spring.blog;
 
 import com.cipitech.samples.spring.blog.domain.Post;
+import com.cipitech.samples.spring.blog.service.PostService;
 import com.cipitech.samples.spring.blog.service.PostServiceInMemory;
 import com.cipitech.samples.spring.blog.web.controllers.PostController;
 import org.junit.jupiter.api.Test;
@@ -25,7 +26,7 @@ class PostControllerTest
 	private MockMvc             mvc;
 
 	@MockBean
-	private PostServiceInMemory postServiceInMemory;
+	private PostService postService;
 
 	@Test
 	public void testFindAllPosts() throws Exception
@@ -34,15 +35,15 @@ class PostControllerTest
 		post.setId(1);
 		post.setTitle("Test");
 		post.setDescription("Test");
-		postServiceInMemory.addPost(post);
+		postService.addPost(post);
 
 		Post secondPost = new Post();
 		secondPost.setId(2);
 		secondPost.setTitle("Test 1");
 		secondPost.setDescription("Test 1");
-		postServiceInMemory.addPost(secondPost);
+		postService.addPost(secondPost);
 
-		BDDMockito.given(postServiceInMemory.findAllPosts()).willReturn(new CopyOnWriteArraySet<>(Arrays.asList(post, secondPost)));
+		BDDMockito.given(postService.findAllPosts()).willReturn(new CopyOnWriteArraySet<>(Arrays.asList(post, secondPost)));
 
 		this.mvc.perform(MockMvcRequestBuilders.get("/posts").accept(MediaType.TEXT_HTML))
 				.andExpect(MockMvcResultMatchers.status().isOk())
