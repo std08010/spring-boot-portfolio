@@ -1,6 +1,5 @@
 package com.cipitech.samples.spring.blog.config;
 
-import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.MessageSource;

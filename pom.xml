@@ -49,6 +49,7 @@
         <module>springmvc-jpa-boot</module>
         <module>springmvc-initializr</module>
         <module>spring-boot-blog</module>
+        <module>springboot-mybatis</module>
     </modules>
 
     <dependencies>

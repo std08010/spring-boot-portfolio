@@ -24,7 +24,7 @@ spring:
       file-size-threshold: 0B
 
   flyway:
-    baseline-on-migrate: true
+    baseline-on-migrate: true #If you set this to false then you must have a baseline script that starts with V1__init.sql
 
 
 #  test:

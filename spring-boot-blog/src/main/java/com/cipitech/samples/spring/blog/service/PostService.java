@@ -1,18 +1,19 @@
 package com.cipitech.samples.spring.blog.service;
 
-import com.cipitech.samples.spring.blog.domain.Post;
+import com.cipitech.samples.spring.blog.dto.PostDTO;
 import com.cipitech.samples.spring.blog.repository.PostRepository;
 
 import java.time.LocalDateTime;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public abstract class PostService
 {
 	public abstract PostRepository getRepository();
 
-	public Post findByPostID(Integer postId)
+	public PostDTO findByPostID(Integer postId)
 	{
-		return getRepository().findByPostID(postId);
+		return PostDTO.toPostDTO(getRepository().findByPostID(postId));
 	}
 
 	public boolean postExistsWithTitle(String title)
@@ -25,21 +26,21 @@ public abstract class PostService
 		return getRepository().isEmpty();
 	}
 
-	public Set<Post> findAllPosts()
+	public Set<PostDTO> findAllPosts()
 	{
-		return getRepository().findAllPosts();
+		return getRepository().findAllPosts().stream().map(PostDTO::toPostDTO).collect(Collectors.toSet());
 	}
 
-	public void addPost(Post post)
+	public void addPost(PostDTO postDTO)
 	{
-		post.setCreatedOn(LocalDateTime.now());
-		post.setUpdatedOn(LocalDateTime.now());
-		getRepository().addPost(post);
+		postDTO.setCreatedOn(LocalDateTime.now());
+		postDTO.setUpdatedOn(LocalDateTime.now());
+		getRepository().addPost(PostDTO.toPost(postDTO));
 	}
 
-	public void updatePost(Post post)
+	public void updatePost(PostDTO postDTO)
 	{
-		getRepository().updatePost(post);
+		getRepository().updatePost(PostDTO.toPost(postDTO));
 	}
 
 	public void deletePost(Integer id)

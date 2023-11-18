@@ -1,7 +1,7 @@
 package com.cipitech.samples.spring.blog.web.controllers;
 
-import com.cipitech.samples.spring.blog.domain.Post;
 import com.cipitech.samples.spring.blog.domain.PostStatus;
+import com.cipitech.samples.spring.blog.dto.PostDTO;
 import com.cipitech.samples.spring.blog.service.PostService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -24,14 +24,14 @@ public class PostController
 	{
 		if (postService.isEmpty())
 		{
-			Post post = new Post();
+			PostDTO post = new PostDTO();
 			post.setTitle("Hello Spring Boot");
 			post.setDescription("Spring Boot");
 			post.setBody("Spring Boot is Awesome");
 			post.setPostStatus(PostStatus.DRAFT);
 			postService.addPost(post);
 
-			post = new Post();
+			post = new PostDTO();
 			post.setTitle("Hello Spring Boot 3");
 			post.setDescription("Spring Boot 3");
 			post.setBody("Spring Boot 3 is Awesome");
@@ -47,12 +47,12 @@ public class PostController
 	@GetMapping("/add")
 	public String addPostPage(Model model)
 	{
-		model.addAttribute("post", new Post());
+		model.addAttribute("post", new PostDTO());
 		return "addPost";
 	}
 
 	@PostMapping
-	public String addPost(@ModelAttribute("post") @Valid Post post, Errors errors)
+	public String addPost(@ModelAttribute("post") @Valid PostDTO post, Errors errors)
 	{
 		if (errors.hasErrors())
 		{
