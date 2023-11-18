@@ -1,2 +1,2 @@
-init-db: true
+init-db: false
 init-scripts: sql/data.sql

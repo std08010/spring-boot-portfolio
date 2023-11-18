@@ -1,7 +1,7 @@
 spring:
   sql:
     init:
-      mode: always
+      mode: never
       platform: postgresql
       #data-locations: data-postgresql.sql
       #schema-locations: schema-postgresql.sql
