@@ -7,8 +7,16 @@ import java.util.Set;
 public interface PostRepository
 {
 	void addPost(Post post);
+
 	Set<Post> findAllPosts();
-	Post findById(Integer id);
+
+	Post findByPostID(Integer id);
+
 	boolean isEmpty();
+
 	boolean postExistsWithTitle(String title);
+
+	void updatePost(Post post);
+
+	void deletePost(Integer id);
 }

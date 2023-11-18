@@ -16,4 +16,16 @@ public class DateUtils
 			return date.toLocalDateTime();
 		}
 	}
+
+	public static Timestamp convertToTimestamp(LocalDateTime date)
+	{
+		if (date == null)
+		{
+			return null;
+		}
+		else
+		{
+			return Timestamp.valueOf(date);
+		}
+	}
 }

@@ -1,7 +1,7 @@
 package com.cipitech.samples.spring.blog.config;
 
+import com.zaxxer.hikari.HikariDataSource;
 import lombok.RequiredArgsConstructor;
-import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.*;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
@@ -42,9 +42,9 @@ public class JdbcPlainConfig
 	@Bean
 	public DataSource dataSource()
 	{
-		BasicDataSource dataSource = new BasicDataSource();
+		HikariDataSource dataSource = new HikariDataSource();
 		dataSource.setDriverClassName(env.getProperty("jdbc.driverClassName"));
-		dataSource.setUrl(env.getProperty("jdbc.url"));
+		dataSource.setJdbcUrl(env.getProperty("jdbc.url"));
 		dataSource.setUsername(env.getProperty("jdbc.username"));
 		dataSource.setPassword(env.getProperty("jdbc.password"));
 		return dataSource;

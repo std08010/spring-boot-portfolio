@@ -10,9 +10,9 @@ public abstract class PostService
 {
 	public abstract PostRepository getRepository();
 
-	public Post findById(Integer postId)
+	public Post findByPostID(Integer postId)
 	{
-		return getRepository().findById(postId);
+		return getRepository().findByPostID(postId);
 	}
 
 	public boolean postExistsWithTitle(String title)
@@ -35,5 +35,15 @@ public abstract class PostService
 		post.setCreatedOn(LocalDateTime.now());
 		post.setUpdatedOn(LocalDateTime.now());
 		getRepository().addPost(post);
+	}
+
+	public void updatePost(Post post)
+	{
+		getRepository().updatePost(post);
+	}
+
+	public void deletePost(Integer id)
+	{
+		getRepository().deletePost(id);
 	}
 }

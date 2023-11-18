@@ -2,6 +2,7 @@ package com.cipitech.samples.spring.blog.repository;
 
 import com.cipitech.samples.spring.blog.domain.Post;
 import com.cipitech.samples.spring.blog.domain.PostStatus;
+import com.cipitech.samples.spring.blog.exception.SpringBlogException;
 import com.cipitech.samples.spring.blog.utils.DateUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,15 +18,15 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Slf4j
-@Profile("jdbc-plain")
+@Profile({"jdbc-plain", "jdbc-boot"})
 @Repository
 @RequiredArgsConstructor
-public class PostRepositoryJdbcPlain implements PostRepository
+public class PostRepositoryJdbc implements PostRepository
 {
 	private final JdbcTemplate jdbcTemplate;
 	private final DataSource   dataSource;
 
-	public Optional<Post> findByIdWithoutJdbcTemplate(Integer id)
+	public Post findByPostIDWithoutJdbcTemplate(Integer id)
 	{
 		Connection connection = null;
 		PreparedStatement statement = null;
@@ -41,10 +42,19 @@ public class PostRepositoryJdbcPlain implements PostRepository
 			Post post = null;
 			if (resultSet.next())
 			{
-				post = Post.builder().id(resultSet.getInt("id")).title(resultSet.getString("title")).description(resultSet.getString("description")).body(resultSet.getString("body")).slug(resultSet.getString("slug")).postStatus(PostStatus.valueOf(resultSet.getString("post_status"))).createdOn(DateUtils.convertToLocalDateTime(resultSet.getTimestamp("created_on"))).updatedOn(DateUtils.convertToLocalDateTime(resultSet.getTimestamp("updated_on"))).build();
+				post = Post.builder()
+						.id(resultSet.getInt("id"))
+						.title(resultSet.getString("title"))
+						.description(resultSet.getString("description"))
+						.body(resultSet.getString("body"))
+						.slug(resultSet.getString("slug"))
+						.postStatus(PostStatus.fromString(resultSet.getString("post_status")))
+						.createdOn(DateUtils.convertToLocalDateTime(resultSet.getTimestamp("created_on")))
+						.updatedOn(DateUtils.convertToLocalDateTime(resultSet.getTimestamp("updated_on")))
+						.build();
 			}
 
-			return Optional.ofNullable(post);
+			return Optional.ofNullable(post).orElseThrow(() -> new SpringBlogException("Cannot find post by id: " + id));
 		}
 		catch (SQLException e)
 		{
@@ -87,13 +97,14 @@ public class PostRepositoryJdbcPlain implements PostRepository
 			}
 		}
 
-		return Optional.empty();
+		return null;
 	}
 
 	@Override
-	public Post findById(Integer id)
+	public Post findByPostID(Integer id)
 	{
-		return jdbcTemplate.queryForObject("select id, title, description, body, slug, post_status,created_on, updated_on from posts where id=?", new PostMapper(), id);
+		Post result = jdbcTemplate.queryForObject("select id, title, description, body, slug, post_status,created_on, updated_on from posts where id=?", new PostMapper(), id);
+		return Optional.ofNullable(result).orElseThrow(() -> new SpringBlogException("Cannot find post by id: " + id));
 	}
 
 	@Override
@@ -117,6 +128,18 @@ public class PostRepositoryJdbcPlain implements PostRepository
 	}
 
 	@Override
+	public void updatePost(Post post)
+	{
+
+	}
+
+	@Override
+	public void deletePost(Integer id)
+	{
+
+	}
+
+	@Override
 	public void addPost(Post post)
 	{
 		final String sql = "insert into posts(title, description, body, slug, post_status, created_on, updated_on) values (?,?,?,?,?,?,?)";
@@ -127,9 +150,9 @@ public class PostRepositoryJdbcPlain implements PostRepository
 			preparedStatement.setString(2, post.getDescription());
 			preparedStatement.setString(3, post.getBody());
 			preparedStatement.setString(4, post.getSlug());
-			preparedStatement.setObject(5, post.getPostStatus());
-			preparedStatement.setTimestamp(6, java.sql.Timestamp.valueOf(post.getCreatedOn()));
-			preparedStatement.setTimestamp(7, java.sql.Timestamp.valueOf(post.getUpdatedOn()));
+			preparedStatement.setString(5, PostStatus.intoString(post.getPostStatus()));
+			preparedStatement.setTimestamp(6, DateUtils.convertToTimestamp(post.getCreatedOn()));
+			preparedStatement.setTimestamp(7, DateUtils.convertToTimestamp(post.getUpdatedOn()));
 			return preparedStatement;
 		});
 	}
@@ -144,7 +167,7 @@ public class PostRepositoryJdbcPlain implements PostRepository
 			post.setTitle(rs.getString("title"));
 			post.setDescription(rs.getString("description"));
 			post.setBody(rs.getString("body"));
-			post.setPostStatus((PostStatus) rs.getObject("post_status"));
+			post.setPostStatus(PostStatus.fromString(rs.getString("post_status")));
 			post.setCreatedOn(DateUtils.convertToLocalDateTime(rs.getTimestamp("created_on")));
 			post.setUpdatedOn(DateUtils.convertToLocalDateTime(rs.getTimestamp("updated_on")));
 			return post;

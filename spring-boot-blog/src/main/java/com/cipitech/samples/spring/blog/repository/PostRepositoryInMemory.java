@@ -33,7 +33,7 @@ public class PostRepositoryInMemory implements PostRepository
 	}
 
 	@Override
-	public Post findById(Integer postId)
+	public Post findByPostID(Integer postId)
 	{
 		return posts.stream().filter(post -> postId.equals(post.getId())).findFirst()
 				.orElseThrow(() -> new SpringBlogException("Cannot find post by id: " + postId));
@@ -45,16 +45,18 @@ public class PostRepositoryInMemory implements PostRepository
 		return posts.stream().anyMatch(post -> title.equals(post.getTitle()));
 	}
 
+	@Override
 	public void updatePost(Post post)
 	{
-		Post savedPost = findById(post.getId());
+		Post savedPost = findByPostID(post.getId());
 		post.setId(savedPost.getId());
 		posts.add(post);
 	}
 
+	@Override
 	public void deletePost(Integer id)
 	{
-		Post onePost = findById(id);
+		Post onePost = findByPostID(id);
 		posts.remove(onePost);
 	}
 }

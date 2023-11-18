@@ -3,10 +3,11 @@ package com.cipitech.samples.spring.blog.domain;
 import com.cipitech.samples.spring.blog.validation.BlogPostTitleAlreadyExists;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -16,8 +17,10 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @BlogPostTitleAlreadyExists/*(message = "Title Already Exists. Please try something else.")*/
+@Table(name = "posts") //This is not the same Table as in spring-data-jpa (jakarta.persistence.Table)
 public class Post
 {
+	@Id
 	private Integer       id;
 	@NotNull
 	//The message already exists in the messages.properties, so there is no need to define it here.
@@ -33,5 +36,6 @@ public class Post
 	private PostStatus    postStatus;
 	private LocalDateTime createdOn;
 	private LocalDateTime updatedOn;
+	@Transient
 	private List<Comment> comments;
 }

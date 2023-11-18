@@ -1,17 +1,17 @@
 package com.cipitech.samples.spring.blog.service;
 
 import com.cipitech.samples.spring.blog.repository.PostRepository;
-import com.cipitech.samples.spring.blog.repository.PostRepositoryInMemory;
+import com.cipitech.samples.spring.blog.repository.PostRepositoryJdbc;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
-@Profile("in-memory")
+@Profile({"jdbc-plain", "jdbc-boot"})
 @Service
 @RequiredArgsConstructor
-public class PostServiceInMemory extends PostService
+public class PostServiceJdbc extends PostService
 {
-	private final PostRepositoryInMemory postRepository;
+	private final PostRepositoryJdbc postRepository;
 
 	@Override
 	public PostRepository getRepository()

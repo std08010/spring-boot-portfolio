@@ -26,6 +26,8 @@ public class GlobalExceptionHandler
 	{
 		log.error("Exception occurred: " + e.getMessage());
 
+		e.printStackTrace();
+
 		ModelAndView model = new ModelAndView("error");
 		model.addObject("exception", new SpringBlogException(e.getMessage()));
 		return model;

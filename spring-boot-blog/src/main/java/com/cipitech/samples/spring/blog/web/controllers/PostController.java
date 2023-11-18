@@ -1,6 +1,7 @@
 package com.cipitech.samples.spring.blog.web.controllers;
 
 import com.cipitech.samples.spring.blog.domain.Post;
+import com.cipitech.samples.spring.blog.domain.PostStatus;
 import com.cipitech.samples.spring.blog.service.PostService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -27,12 +28,14 @@ public class PostController
 			post.setTitle("Hello Spring Boot");
 			post.setDescription("Spring Boot");
 			post.setBody("Spring Boot is Awesome");
+			post.setPostStatus(PostStatus.DRAFT);
 			postService.addPost(post);
 
 			post = new Post();
 			post.setTitle("Hello Spring Boot 3");
 			post.setDescription("Spring Boot 3");
 			post.setBody("Spring Boot 3 is Awesome");
+			post.setPostStatus(PostStatus.PUBLISHED);
 			postService.addPost(post);
 		}
 
@@ -65,14 +68,14 @@ public class PostController
 	@GetMapping("/{id}")
 	public String onePostPage(Model model, @PathVariable Integer id)
 	{
-		model.addAttribute("post", postService.findById(id));
+		model.addAttribute("post", postService.findByPostID(id));
 		return "onePost";
 	}
 
 	@GetMapping("/update/{id}")
 	public String updatePost(Model model, @PathVariable Integer id)
 	{
-		model.addAttribute("post", postService.findById(id));
+		model.addAttribute("post", postService.findByPostID(id));
 		return "updatePost";
 	}
 

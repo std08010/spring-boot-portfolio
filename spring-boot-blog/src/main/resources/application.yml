@@ -13,7 +13,7 @@ server:
 
 spring:
   profiles:
-    active: global-exception, jdbc-plain
+    active: global-exception, jdbc-data
   messages:
     encoding: UTF-8
   servlet:
@@ -23,5 +23,10 @@ spring:
       max-request-size: 100MB
       file-size-threshold: 0B
 
+#  test:
+#    database:
+#      replace: none
 
 uploadLocation: "C://logs//uploads"
+
+

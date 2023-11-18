@@ -1,0 +1,12 @@
+spring:
+  sql:
+    init:
+      mode: always
+      platform: postgresql
+      #data-locations: data-postgresql.sql
+      #schema-locations: schema-postgresql.sql
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5435/spring-boot-blog
+    username: postgres
+    password: postgres
