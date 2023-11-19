@@ -1,0 +1,36 @@
+logging:
+  level:
+    org:
+      springframework: ERROR
+      hibernate: ERROR
+    com:
+      cipitech: TRACE
+
+server:
+  port: 8081
+  servlet:
+    context-path: /blog
+
+spring:
+  profiles:
+    active: global-exception, jpa-data
+  messages:
+    encoding: UTF-8
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 100MB
+      file-size-threshold: 0B
+
+  flyway:
+    baseline-on-migrate: true #If you set this to false then you must have a baseline script that starts with V1__init.sql
+    enabled: true
+
+#  test:
+#    database:
+#      replace: none
+
+uploadLocation: "C://logs//uploads"
+
+

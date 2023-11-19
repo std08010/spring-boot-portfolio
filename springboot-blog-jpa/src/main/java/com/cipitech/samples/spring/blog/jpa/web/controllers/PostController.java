@@ -1,8 +1,8 @@
-package com.cipitech.samples.spring.blog.jdbc.web.controllers;
+package com.cipitech.samples.spring.blog.jpa.web.controllers;
 
-import com.cipitech.samples.spring.blog.jdbc.service.PostService;
-import com.cipitech.samples.spring.blog.jdbc.domain.PostStatus;
-import com.cipitech.samples.spring.blog.jdbc.dto.PostDTO;
+import com.cipitech.samples.spring.blog.jpa.domain.PostStatus;
+import com.cipitech.samples.spring.blog.jpa.dto.PostDTO;
+import com.cipitech.samples.spring.blog.jpa.service.PostService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

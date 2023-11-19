@@ -7,6 +7,6 @@ spring:
       #schema-locations: schema-postgresql.sql
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5435/spring-boot-blog
+    url: jdbc:postgresql://localhost:5435/springboot-blog-jdbc
     username: postgres
     password: postgres

@@ -1,7 +1,7 @@
 package com.cipitech.samples.spring.blog.jdbc.repository;
 
-import com.cipitech.samples.spring.blog.jdbc.domain.Post;
 import com.cipitech.samples.spring.blog.jdbc.exception.SpringBlogException;
+import com.cipitech.samples.spring.blog.jdbc.domain.Post;
 import org.springframework.context.annotation.Profile;
 import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;

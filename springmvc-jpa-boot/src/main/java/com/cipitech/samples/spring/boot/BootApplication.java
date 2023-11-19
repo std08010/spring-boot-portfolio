@@ -8,18 +8,18 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @Slf4j
 @SpringBootApplication
 //@EntityScan(basePackageClasses = User.class) // Instruct Spring JPA to scan for Entities under the package where User exists.
-public class Application implements CommandLineRunner
+public class BootApplication implements CommandLineRunner
 {
 	private final SupportProperties supportProperties;
 
-	public Application(SupportProperties supportProperties)
+	public BootApplication(SupportProperties supportProperties)
 	{
 		this.supportProperties = supportProperties;
 	}
 
 	public static void main(String[] args)
 	{
-		SpringApplication.run(Application.class, args);
+		SpringApplication.run(BootApplication.class, args);
 	}
 
 	@Override

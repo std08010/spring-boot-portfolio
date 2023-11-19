@@ -44,10 +44,7 @@ that can be used in the repository using the DSLContext.
 -->
     <profiles>
         <profile>
-            <id>h2</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
+            <id>jooq-h2</id>
             <build>
                 <plugins>
                     <plugin>
@@ -119,7 +116,10 @@ that can be used in the repository using the DSLContext.
             </build>
         </profile>
         <profile>
-            <id>postgresql</id>
+            <id>jooq-postgresql</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
             <build>
                 <plugins>
                     <plugin>

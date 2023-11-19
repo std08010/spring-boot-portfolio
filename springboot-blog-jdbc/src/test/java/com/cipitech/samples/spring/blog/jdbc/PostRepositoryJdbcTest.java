@@ -1,8 +1,8 @@
 package com.cipitech.samples.spring.blog.jdbc;
 
 import com.cipitech.samples.spring.blog.jdbc.domain.Post;
-import com.cipitech.samples.spring.blog.jdbc.domain.PostStatus;
 import com.cipitech.samples.spring.blog.jdbc.repository.PostRepositoryJdbc;
+import com.cipitech.samples.spring.blog.jdbc.domain.PostStatus;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

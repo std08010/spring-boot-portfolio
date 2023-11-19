@@ -13,7 +13,7 @@ import org.springframework.test.context.ActiveProfiles;
 
 @Slf4j
 @ActiveProfiles("test")
-@SpringBootTest(classes=Application.class) //Note that here we are using the class of the SpringBootApplication
+@SpringBootTest(classes= BootApplication.class) //Note that here we are using the class of the SpringBootApplication
 public class ApplicationTest
 {
 	@Autowired

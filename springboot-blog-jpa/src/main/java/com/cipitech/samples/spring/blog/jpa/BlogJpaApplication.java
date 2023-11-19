@@ -1,4 +1,4 @@
-package com.cipitech.samples.spring.blog.jdbc;
+package com.cipitech.samples.spring.blog.jpa;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 // Uncomment commented code when you want to build a WAR file instead of JAR file
 
 @SpringBootApplication
-public class BlogApplication /*extends SpringBootServletInitializer*/
+public class BlogJpaApplication /*extends SpringBootServletInitializer*/
 {
 //	@Override
 //	protected SpringApplicationBuilder configure(SpringApplicationBuilder application)
@@ -16,6 +16,6 @@ public class BlogApplication /*extends SpringBootServletInitializer*/
 
 	public static void main(String[] args)
 	{
-		SpringApplication.run(BlogApplication.class, args);
+		SpringApplication.run(BlogJpaApplication.class, args);
 	}
 }

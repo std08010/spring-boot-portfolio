@@ -1,8 +1,8 @@
-package com.cipitech.samples.spring.blog.jdbc;
+package com.cipitech.samples.spring.blog.jpa;
 
-import com.cipitech.samples.spring.blog.jdbc.service.PostService;
-import com.cipitech.samples.spring.blog.jdbc.web.controllers.PostController;
-import com.cipitech.samples.spring.blog.jdbc.dto.PostDTO;
+import com.cipitech.samples.spring.blog.jpa.dto.PostDTO;
+import com.cipitech.samples.spring.blog.jpa.service.PostService;
+import com.cipitech.samples.spring.blog.jpa.web.controllers.PostController;
 import org.junit.jupiter.api.Test;
 import org.mockito.BDDMockito;
 import org.springframework.beans.factory.annotation.Autowired;
