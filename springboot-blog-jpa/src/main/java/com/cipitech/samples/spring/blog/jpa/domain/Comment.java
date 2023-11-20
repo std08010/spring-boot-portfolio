@@ -22,6 +22,7 @@ public class Comment
 
 	@Column(length = 200, nullable = false)
 	private String        title;
+
 	@Column(columnDefinition = "TEXT")
 	private String        body;
 

@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @ControllerAdvice
 @Slf4j
-@Profile("global-exception")
+@Profile("global-exception-mvc")
 public class GlobalExceptionHandler
 {
 	@ExceptionHandler(SpringBlogException.class)
@@ -22,7 +22,7 @@ public class GlobalExceptionHandler
 	}
 
 	@ExceptionHandler(Exception.class)
-	public ModelAndView handleSpringBlogException(Exception e)
+	public ModelAndView handleException(Exception e)
 	{
 		log.error("Exception occurred: " + e.getMessage());
 

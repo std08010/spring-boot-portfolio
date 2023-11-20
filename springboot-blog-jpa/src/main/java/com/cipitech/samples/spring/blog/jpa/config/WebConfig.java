@@ -49,7 +49,7 @@ public class WebConfig implements WebMvcConfigurer
 	}
 
 	@Override
-	public void configureDefaultServletHandling( DefaultServletHandlerConfigurer configurer)
+	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer)
 	{
 		// Left empty intentionally so that default configuration for DispatcherServlet is used.
 	}
@@ -106,5 +106,16 @@ public class WebConfig implements WebMvcConfigurer
 		//for error messages and not the default "ValidationMessages.properties"
 		factory.setValidationMessageSource(messageSource);
 		return factory;
+	}
+
+	@Override
+	public void addCorsMappings(CorsRegistry registry)
+	{
+		registry.addMapping("/api/rest/**")
+				.allowedOrigins("*")
+				.allowedMethods("*")
+				.allowedHeaders("*")
+				.allowCredentials(false)
+				.maxAge(3600);
 	}
 }

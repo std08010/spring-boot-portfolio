@@ -13,7 +13,7 @@ server:
 
 spring:
   profiles:
-    active: global-exception
+    active: global-exception-rest
   messages:
     encoding: UTF-8
   servlet:
@@ -39,6 +39,9 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+  data:
+    rest:
+      base-path: /api/data # the path where all repositories will be exposed. e.g. /api/data/posts, /api/data/comments
 
 #  test:
 #    database:

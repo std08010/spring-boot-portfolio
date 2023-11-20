@@ -1,6 +1,5 @@
 package com.cipitech.samples.spring.blog.jpa.dto;
 
-import com.cipitech.samples.spring.blog.jpa.domain.Post;
 import com.cipitech.samples.spring.blog.jpa.domain.PostStatus;
 import com.cipitech.samples.spring.blog.jpa.validation.BlogPostTitleAlreadyExists;
 import jakarta.validation.constraints.NotNull;
@@ -12,7 +11,6 @@ import lombok.NoArgsConstructor;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
 
 @Data
 @AllArgsConstructor
@@ -21,6 +19,7 @@ import java.util.Optional;
 @BlogPostTitleAlreadyExists/*(message = "Title Already Exists. Please try something else.")*/
 public class PostDTO
 {
+	private Integer       id;
 	@NotNull
 	//The message already exists in the messages.properties, so there is no need to define it here.
 	@Size(min = 3, max = 50)
@@ -36,34 +35,4 @@ public class PostDTO
 	private LocalDateTime createdOn;
 	private LocalDateTime updatedOn;
 	private MultipartFile coverPhoto;
-
-	public static Post toPost(PostDTO dto)
-	{
-		return Optional.ofNullable(dto).map(dtoObj ->
-						Post.builder()
-								.title(dtoObj.getTitle())
-								.description(dtoObj.getDescription())
-								.body(dtoObj.getBody())
-								.slug(dtoObj.getSlug())
-								.createdOn(dtoObj.getCreatedOn())
-								.updatedOn(dtoObj.getUpdatedOn())
-								.postStatus(dtoObj.getPostStatus())
-								.build())
-				.orElse(null);
-	}
-
-	public static PostDTO toPostDTO(Post post)
-	{
-		return Optional.ofNullable(post).map(postObj ->
-						PostDTO.builder()
-								.title(postObj.getTitle())
-								.description(postObj.getDescription())
-								.body(postObj.getBody())
-								.slug(postObj.getSlug())
-								.createdOn(postObj.getCreatedOn())
-								.updatedOn(postObj.getUpdatedOn())
-								.postStatus(postObj.getPostStatus())
-								.build())
-				.orElse(null);
-	}
 }

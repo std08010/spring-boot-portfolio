@@ -29,10 +29,13 @@ public class Post
 
 	@Column(length = 50, nullable = false)
 	private String title;
+
 	@Column(length = 500, nullable = false)
 	private String description;
+
 	@Column(columnDefinition = "TEXT")
 	private String body;
+
 	@Column(length = 60)
 	private String slug;
 

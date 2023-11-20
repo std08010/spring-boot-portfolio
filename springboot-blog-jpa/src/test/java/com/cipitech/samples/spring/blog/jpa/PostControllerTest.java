@@ -13,6 +13,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArraySet;
 
@@ -50,7 +51,7 @@ class PostControllerTest
 
 		//postService.findAllPosts() will be called in the PostController
 		//so the Set with the 2 elements will be returned.
-		BDDMockito.given(postService.findAllPosts()).willReturn(new CopyOnWriteArraySet<>(List.of(post, secondPost)));
+		BDDMockito.given(postService.findAllPosts()).willReturn(new ArrayList<>(List.of(post, secondPost)));
 
 		//postService.isEmpty() will return false as it is a mock implementation and those return always false by default.
 		this.mvc.perform(MockMvcRequestBuilders.get("/posts").accept(MediaType.TEXT_HTML))
