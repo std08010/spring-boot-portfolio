@@ -1,6 +1,6 @@
-package com.cipitech.samples.spring.jooq.mappers;
+package com.cipitech.samples.spring.mybatis.mappers;
 
-import com.cipitech.samples.spring.jooq.domain.User;
+import com.cipitech.samples.spring.mybatis.domain.User;
 
 import java.util.List;
 

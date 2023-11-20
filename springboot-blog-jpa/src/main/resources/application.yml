@@ -13,7 +13,7 @@ server:
 
 spring:
   profiles:
-    active: global-exception, jpa-data
+    active: global-exception
   messages:
     encoding: UTF-8
   servlet:
@@ -27,10 +27,21 @@ spring:
     baseline-on-migrate: true #If you set this to false then you must have a baseline script that starts with V1__init.sql
     enabled: true
 
+  sql:
+    init:
+      mode: never
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5435/springboot-blog-jpa
+    username: postgres
+    password: postgres
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
 #  test:
 #    database:
 #      replace: none
 
 uploadLocation: "C://logs//uploads"
-
-

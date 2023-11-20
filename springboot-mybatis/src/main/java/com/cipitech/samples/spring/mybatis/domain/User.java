@@ -1,4 +1,4 @@
-package com.cipitech.samples.spring.jooq.domain;
+package com.cipitech.samples.spring.mybatis.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

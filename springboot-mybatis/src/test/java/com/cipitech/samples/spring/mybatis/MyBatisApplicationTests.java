@@ -1,8 +1,8 @@
-package com.cipitech.samples.spring.jooq;
+package com.cipitech.samples.spring.mybatis;
 
-import com.cipitech.samples.spring.jooq.domain.User;
-import com.cipitech.samples.spring.jooq.mappers.UserAnnotationMapper;
-import com.cipitech.samples.spring.jooq.mappers.UserMapper;
+import com.cipitech.samples.spring.mybatis.domain.User;
+import com.cipitech.samples.spring.mybatis.mappers.UserAnnotationMapper;
+import com.cipitech.samples.spring.mybatis.mappers.UserMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

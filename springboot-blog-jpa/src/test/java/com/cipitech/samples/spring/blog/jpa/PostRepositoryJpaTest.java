@@ -2,7 +2,7 @@ package com.cipitech.samples.spring.blog.jpa;
 
 import com.cipitech.samples.spring.blog.jpa.domain.Post;
 import com.cipitech.samples.spring.blog.jpa.domain.PostStatus;
-import com.cipitech.samples.spring.blog.jpa.repository.PostRepositoryJpaData;
+import com.cipitech.samples.spring.blog.jpa.repository.PostRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 public class PostRepositoryJpaTest
 {
 	@Autowired
-	private PostRepositoryJpaData postRepository;
+	private PostRepository postRepository;
 
 	@Test
 	void testFindAllPosts()
@@ -27,8 +27,8 @@ public class PostRepositoryJpaTest
 		post.setPostStatus(PostStatus.PUBLISHED);
 		post.setUpdatedOn(LocalDateTime.now());
 		post.setCreatedOn(LocalDateTime.now());
-		postRepository.addPost(post);
+		postRepository.save(post);
 
-		Assertions.assertThat(postRepository.findAllPosts()).hasSize(1);
+		Assertions.assertThat(postRepository.findAll()).hasSize(1);
 	}
 }

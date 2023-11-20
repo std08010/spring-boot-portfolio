@@ -1,0 +1,10 @@
+logging:
+  level:
+    org:
+      springframework: ERROR
+    com:
+      cipitech: TRACE
+
+spring:
+  profiles:
+    active: mongo-data

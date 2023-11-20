@@ -1,13 +1,12 @@
-package com.cipitech.samples.spring.jooq.mappers;
+package com.cipitech.samples.spring.mybatis.mappers;
 
 import java.util.List;
 
+import com.cipitech.samples.spring.mybatis.domain.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectKey;
-
-import com.cipitech.samples.spring.jooq.domain.User;
 
 @Mapper
 public interface UserAnnotationMapper
