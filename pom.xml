@@ -50,6 +50,7 @@
         <module>springmvc-initializr</module>
         <module>springboot-blog-jdbc</module>
         <module>springboot-blog-jpa</module>
+        <module>springboot-blog-reactive</module>
         <module>springboot-mybatis</module>
         <module>springboot-jooq</module>
         <module>springboot-mongo</module>

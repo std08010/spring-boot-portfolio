@@ -16,7 +16,7 @@ import org.springframework.validation.annotation.Validated;
 @ToString
 @Configuration
 @ConfigurationProperties(prefix = "support")
-@Validated
+@Validated //Used at a class level to enforce validation
 public class SupportProperties
 {
 	@NotNull

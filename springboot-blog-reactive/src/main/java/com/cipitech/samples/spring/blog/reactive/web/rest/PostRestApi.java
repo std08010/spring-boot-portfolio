@@ -1,14 +1,16 @@
-package com.cipitech.samples.spring.blog.jpa.web.rest;
+package com.cipitech.samples.spring.blog.reactive.web.rest;
 
-import com.cipitech.samples.spring.blog.jpa.dto.PostDTO;
-import com.cipitech.samples.spring.blog.jpa.exception.rest.ErrorDetails;
-import com.cipitech.samples.spring.blog.jpa.exception.rest.PostDeletionException;
-import com.cipitech.samples.spring.blog.jpa.service.PostService;
+import com.cipitech.samples.spring.blog.reactive.dto.PostDTO;
+import com.cipitech.samples.spring.blog.reactive.exception.rest.ErrorDetails;
+import com.cipitech.samples.spring.blog.reactive.exception.rest.PostDeletionException;
+import com.cipitech.samples.spring.blog.reactive.service.PostService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 
@@ -22,32 +24,32 @@ public class PostRestApi
 
 	@GetMapping
 	@ResponseStatus(HttpStatus.OK)
-	public List<PostDTO> listPosts()
+	public Flux<PostDTO> listPosts()
 	{
 		return postService.findAllPosts();
 	}
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public PostDTO createPost(@RequestBody @Valid PostDTO post)
+	public Mono<PostDTO> createPost(@RequestBody @Valid PostDTO post)
 	{
 		return postService.addPost(post);
 	}
 
 	@PutMapping
 	@ResponseStatus(HttpStatus.OK)
-	public PostDTO updatePost(@RequestBody @Valid PostDTO post)
+	public Mono<PostDTO> updatePost(@RequestBody @Valid PostDTO post)
 	{
 		return postService.updatePost(post);
 	}
 
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT) //The common practice on delete is to return 204
-	public void deletePost(@PathVariable Integer id)
+	public Mono<Void> deletePost(@PathVariable String id)
 	{
 		try
 		{
-			postService.deletePost(id);
+			return postService.deletePost(id);
 		}
 		catch (Exception e)
 		{
@@ -57,7 +59,7 @@ public class PostRestApi
 
 	@GetMapping("/{slug}")
 	@ResponseStatus(HttpStatus.OK)
-	public PostDTO findPostBySlug(@PathVariable String slug)
+	public Mono<PostDTO> findPostBySlug(@PathVariable String slug)
 	{
 		return postService.findBySlug(slug);
 	}

@@ -1,0 +1,25 @@
+logging:
+  level:
+    org:
+      springframework: ERROR
+      hibernate: ERROR
+    com:
+      cipitech: TRACE
+
+server:
+  port: 8081
+  #servlet:
+    #context-path: /blog #this does not work in webflux -> use spring.webflux.base-path
+
+spring:
+  profiles:
+    active: global-exception-rest, webflux-plain
+  messages:
+    encoding: UTF-8
+
+  webflux:
+    base-path: /blog
+
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/springboot-mongo
