@@ -5,8 +5,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
+import org.springframework.data.relational.core.mapping.Table;
+//import org.springframework.data.mongodb.core.mapping.Document;
+//import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.time.LocalDateTime;
 
@@ -14,22 +15,24 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Document(collection = "comments")
+//@Document(collection = "comments")
+@Table(name = "comments")
 public class Comment
 {
 	@Id
-	private String       id;
+//	private String       id;
+	private Long id;
 
 	private String        title;
 	private String        body;
 
-	@Field(name = "author_name")
+//	@Field(name = "author_name")
 	private String        authorName;
 
-	@Field(name = "created_on")
+//	@Field(name = "created_on")
 	private LocalDateTime createdOn;
 
-	@Field(name = "updated_on")
+//	@Field(name = "updated_on")
 	private LocalDateTime updatedOn;
 
 	private Post post;

@@ -19,7 +19,8 @@ import java.time.LocalDateTime;
 @BlogPostTitleAlreadyExists/*(message = "Title Already Exists. Please try something else.")*/
 public class PostDTO
 {
-	private String       id;
+//	private String       id;
+	private Long       id;
 	@NotNull
 	//The message already exists in the messages.properties, so there is no need to define it here.
 	@Size(min = 3, max = 50)

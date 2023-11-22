@@ -15,7 +15,8 @@ import java.time.LocalDateTime;
 @Builder
 public class CommentDTO
 {
-	private String       id;
+//	private String       id;
+	private Long       id;
 	@NotNull
 	@Size(min = 3, max = 50, message = "Title must be minimum 3 characters, and maximum 50 characters long")
 	private String        title;

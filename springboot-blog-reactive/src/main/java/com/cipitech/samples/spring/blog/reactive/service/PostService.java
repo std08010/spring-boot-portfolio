@@ -22,14 +22,14 @@ public class PostService
 	private final PostRepository postRepository;
 	private final PostMapper     postMapper;
 
-	public Mono<PostDTO> findByPostID(String postId)
+	public Mono<PostDTO> findByPostID(Long postId)
 	{
 		return postRepository.findById(postId).map(postMapper::toPostDTO);
 	}
 
-	public Boolean postExistsWithTitle(String title)
+	public Mono<Boolean> postExistsWithTitle(String title)
 	{
-		return postRepository.existsPostByTitle(title).block();
+		return postRepository.existsPostByTitle(title);
 	}
 
 	public Mono<PostDTO> findBySlug(String slug)
@@ -80,7 +80,7 @@ public class PostService
 				.map(postMapper::toPostDTO);
 	}
 
-	public Mono<Void> deletePost(String id)
+	public Mono<Void> deletePost(Long id)
 	{
 		return postRepository.deleteById(id);
 	}

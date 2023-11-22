@@ -6,7 +6,9 @@ import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Mono;
 
 @Repository
-public interface PostRepository extends ReactiveCrudRepository<Post, String>
+public interface PostRepository
+//		extends ReactiveCrudRepository<Post, String>
+		extends ReactiveCrudRepository<Post, Long>
 {
 	Mono<Boolean> existsPostByTitle(String title);
 

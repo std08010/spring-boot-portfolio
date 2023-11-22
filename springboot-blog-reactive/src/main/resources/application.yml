@@ -13,13 +13,9 @@ server:
 
 spring:
   profiles:
-    active: global-exception-rest, webflux-plain
+    active: global-exception-rest, reactive-r2dbc
   messages:
     encoding: UTF-8
 
   webflux:
     base-path: /blog
-
-  data:
-    mongodb:
-      uri: mongodb://localhost:27017/springboot-mongo

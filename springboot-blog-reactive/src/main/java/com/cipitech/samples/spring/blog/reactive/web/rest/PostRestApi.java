@@ -45,7 +45,7 @@ public class PostRestApi
 
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT) //The common practice on delete is to return 204
-	public Mono<Void> deletePost(@PathVariable String id)
+	public Mono<Void> deletePost(@PathVariable Long id)
 	{
 		try
 		{

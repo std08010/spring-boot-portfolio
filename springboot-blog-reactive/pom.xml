@@ -13,7 +13,8 @@
     <packaging>jar</packaging>
 
     <name>SpringBoot Blog Reactive Demo</name>
-    <description>A demo project that implements a Blog and uses Spring Boot, SpringMVC, MongoDB Reactive and WebFlux</description>
+    <description>A demo project that implements a Blog and uses Spring Boot, SpringMVC, MongoDB Reactive and WebFlux
+    </description>
 
     <dependencies>
         <dependency>
@@ -29,14 +30,42 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-mongodb-reactive</artifactId>
-        </dependency>
         <!--    When you use webflux you don't have to use web-mvc    -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux</artifactId>
         </dependency>
     </dependencies>
+    <profiles>
+        <profile>
+            <id>reactive-mongo</id>
+
+            <dependencies>
+                <dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-data-mongodb-reactive</artifactId>
+                </dependency>
+            </dependencies>
+        </profile>
+
+        <profile>
+            <id>reactive-r2dbc</id>
+
+            <dependencies>
+                <dependency>
+                    <groupId>org.postgresql</groupId>
+                    <artifactId>r2dbc-postgresql</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>io.r2dbc</groupId>
+                    <artifactId>r2dbc-h2</artifactId>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-data-r2dbc</artifactId>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
 </project>

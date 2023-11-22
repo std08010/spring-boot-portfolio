@@ -18,15 +18,15 @@ public record BlogPostTitleValidator(
 	@Override
 	public boolean isValid(PostDTO post, ConstraintValidatorContext constraintValidatorContext)
 	{
-		if (!StringUtils.isEmpty(post.getTitle()) && postService.postExistsWithTitle(post.getTitle()))
-		{
-			constraintValidatorContext.disableDefaultConstraintViolation();
-			constraintValidatorContext
-					.buildConstraintViolationWithTemplate(constraintValidatorContext.getDefaultConstraintMessageTemplate()) // BlogPostTitleAlreadyExists.message
-//					.buildConstraintViolationWithTemplate("{MyCustomLabel}")
-					.addPropertyNode("title").addConstraintViolation();
-			return false;
-		}
+//		if (!StringUtils.isEmpty(post.getTitle()) && postService.postExistsWithTitle(post.getTitle()))
+//		{
+//			constraintValidatorContext.disableDefaultConstraintViolation();
+//			constraintValidatorContext
+//					.buildConstraintViolationWithTemplate(constraintValidatorContext.getDefaultConstraintMessageTemplate()) // BlogPostTitleAlreadyExists.message
+////					.buildConstraintViolationWithTemplate("{MyCustomLabel}")
+//					.addPropertyNode("title").addConstraintViolation();
+//			return false;
+//		}
 		return true;
 	}
 }

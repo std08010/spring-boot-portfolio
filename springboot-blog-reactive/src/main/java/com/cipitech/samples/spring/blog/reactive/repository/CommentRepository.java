@@ -8,7 +8,9 @@ import reactor.core.publisher.Mono;
 
 @CrossOrigin
 @Repository
-public interface CommentRepository extends ReactiveCrudRepository<Comment, String>
+public interface CommentRepository
+//		extends ReactiveCrudRepository<Comment, String>
+		extends ReactiveCrudRepository<Comment, Long>
 {
 	Mono<Boolean> existsCommentByTitle(String title);
 }
